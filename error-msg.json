@@ -1,0 +1,8 @@
+[
+    {
+        "Show": "Show must be a number between 1 and 20"
+    },
+    {
+        "Category": "Category not found"
+    }
+]
