@@ -39,7 +39,7 @@ $data = json_decode($data, true);
 $products = [];
 $products_final = [];
 
-// Filtrerra ut efter catoegrier
+// Filtrerar genom kategorier
 foreach($data as $product) {
     if ($product["category"] == $category) {
         array_push($products, $product);
@@ -52,6 +52,7 @@ if ($show >= count($products) + 1){
     $show = count($products);
 }
 
+// Går igenom show
 if ($category == "all"){
     $numbers = range(0, 19);
     shuffle($numbers);
@@ -65,5 +66,6 @@ if ($category == "all"){
     shuffle($products_final);
 }
 
+// Konverterar till json och skickar ut
 $json = json_encode($products_final, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 echo $json;
