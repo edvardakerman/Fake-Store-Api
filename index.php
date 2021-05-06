@@ -48,23 +48,24 @@ foreach($data as $product) {
     }
 }; 
 
+// sätter up en array med number, för att slumpa fram rätt typ utav produkt
+if ($category == "all"){
+    $numbers = range(0, 19);
+} else {
+    $numbers = range(0, count($products) - 1);
+}
+
+// gör om ordningen på numbers
+shuffle($numbers);
+
 if ($show >= count($products) + 1){
     $show = count($products);
 }
 
-// Går igenom show
-if ($category == "all"){
-    $numbers = range(0, 19);
-    shuffle($numbers);
-    for ($x = 0; $x < $show; $x++) {
-        array_push($products_final, $products[$numbers[$x]]);
-    };
-} else {
-    for ($x = 0; $x < $show; $x++) {
-        array_push($products_final, $products[$x]);
-    };
-    shuffle($products_final);
-}
+// Går igenom show, pushar in ett item från $products på random index($numbers) in i $products_final  
+for ($x = 0; $x < $show; $x++) {
+    array_push($products_final, $products[$numbers[$x]]);
+};
 
 // Konverterar till json och skickar ut
 $json = json_encode($products_final, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
